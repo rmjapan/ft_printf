@@ -75,9 +75,7 @@ int	ft_printf(const char *format, ...)
 	//仕様調査。
 	// stdoutに出力される。//標準出力	stdout	1(write(1,?,?))
 	//位置指定子を使用する場合/そうでない場合の処理は必要。
-	// EX printf("%2$d %1$d", 1, 2);
-	->2,
-		1と出力 : 10進数の数字の文字列に続いて $ がある場合、その数字はアクセスする引数の順番を指定している。
+	// EX printf("%2$d %1$d", 1, 2);->2,1と出力 : 10進数の数字の文字列に続いて $ がある場合、その数字はアクセスする引数の順番を指定している。
 		//但し、位置指定子を使う場合は一貫性を持たせることが重要。すべての変換仕様で位置指定を使うか、または一切使わないかのどちらかに統一する必要があります。
 		//変換仕様について
 		// http://www9.plala.or.jp/sgwr-t/detail/FormatString.html、https://www.mm2d.net/main/prog/c/printf_format-03.html（明日はここから。）
@@ -110,3 +108,12 @@ int	ft_printf(const char *format, ...)
 	va_end(args); //可変長引数リストをクリアする。
 	return (0);
 }
+import openai
+
+
+for (int i = 0; i < 10; i++)
+{
+	//bot=
+	if()
+}
+

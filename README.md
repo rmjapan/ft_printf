@@ -8,10 +8,17 @@
 ## 変換仕様について
 - [変換仕様の説明](http://www9.plala.or.jp/sgwr-t/detail/FormatString.html)を参考に理解する。
 - [subject.pdf](https://cdn.intra.42.fr/pdf/pdf/109720/en.subject.pdf)に、対応する変換指定子は明示されている。
-- -0フラグ, 最小フィールド幅, 精度., cspdiuxX%変換指定子に対応だけしとけばいいっぽい。
+- -、0フラグ、 最小フィールド幅、 精度., cspdiuxX%変換指定子に対応だけしとけばいいっぽい。
 ### フォーマット
 - %[フラグ] [フィールド幅].[精度][長さ修飾子][変換指定子]
 - %[flags][width].[precision][length][specifier]
+- [フラグ]
+ - "-"（マイナスフラグ）と "0"（ゼロフラグ）
+ - 最小フィールド幅
+ - "."（精度）
+ - 変換指定子
+ 
+
 - フラグの種類
   - -,0,+,(space),#
 - [具体例](https://zenn.dev/hosu/articles/54022040cb64c8)
