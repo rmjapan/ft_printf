@@ -14,30 +14,28 @@ size_t	from_percent_to_conversion_specifier_len(char *format)
 		return (len);
 }
 
-all_type_conversion_specifier *output_target(char *format, va_list target)
+all_type_conversion_specifier	*output_target(char *format, va_list target)
 {
 	all_type_conversion_specifier	*memo;
 
 	if (is_conversion_specifier(format))
 	{
-		memo = init_all_type_conversion_specifier(memo);//初期化
-		memo = set_identified_type_conversion_specifier(memo, *format, target);//変換指定子の型にそって、値をセットする。
-		return (memo);	
+		memo = init_all_type_conversion_specifier(memo);                       
+			//初期化
+		memo = set_identified_type_conversion_specifier(memo, *format, target);
+			//変換指定子の型にそって、値をセットする。
+		return (memo);
 	}
-	else{
-		set_conversion_specifier_type(format+1, target);//進む
+	else
+	{
+		set_conversion_specifier_type(format + 1, target); //変換指定子が来るまで読み続ける。
 		//戻るモード
-		if(*format=='.'){
-			//精度がある場合は、精度桁を明らかにする関数を作成する//この時点で、値をどんどん変更させていく
-
+		if (*format == '.')
+		{
+			memo->precision_flag=ft_atoi(format + 1);
+			//精度がある場合は、精度桁を明らかにするために、変換指定子まで読み続ける。
+			//ft_atoiを使えば良いのでは?
 		}
-
-
-
-
-
-
-
 	}
 }
 int	ft_printf(const char *format, ...)
