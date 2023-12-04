@@ -24,9 +24,15 @@ typedef struct
 
 }								all_type_conversion_specifier;
 
-int								ft_printf(const char *format, ...);							init_all_type_conversion_specifier(all_type_conversion_specifier *all_type);
+int								ft_printf(const char *format, ...);
+init_all_type_conversion_specifier(all_type_conversion_specifier *all_type);
 all_type_conversion_specifier	*init_all_type_conversion_specifier(all_type_conversion_specifier *all_type);
 all_type_conversion_specifier	*set_identified_type_conversion_specifier(all_type_conversion_specifier *all_type_conversion_specifier,
-		char format, va_list target)
+		char format,
+		va_list target) all_type_conversion_specifier *set_zero_flag(all_type_conversion_specifier *memo,
+		char *foramt);
+all_type_conversion_specifier	*set_width_flag(all_type_conversion_specifier *memo,
+									char *foramt);
+void							print_target(all_type_conversion_specifier *memo);
 
 #endif // FT_PRINTF_H

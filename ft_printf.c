@@ -1,12 +1,12 @@
 #include "/Users/miyauchiryuuichi/Downloads/42tokyo/ft_printf/include/ft_printf.h"
-
-
+#include "/Users/miyauchiryuuichi/Downloads/42tokyo/ft_printf/include/libft.h"
 
 bool	is_conversion_specifier(char c) //変換指定子を識別する
 {
 	return (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u'
 		|| c == 'x' || c == 'X');
 }
+
 size_t	from_percent_to_conversion_specifier_len(char *format)
 //%から変換指定子までの長さ(これは、ポインターを進めるための長さを図るため。
 {
@@ -16,9 +16,8 @@ size_t	from_percent_to_conversion_specifier_len(char *format)
 		return (len);
 }
 
-
-
-all_type_conversion_specifier	*output_target(char *format, va_list target)
+all_type_conversion_specifier	*set_minus_precision_value(char *format,
+		va_list target)
 {
 	all_type_conversion_specifier	*memo;
 
@@ -32,33 +31,26 @@ all_type_conversion_specifier	*output_target(char *format, va_list target)
 	}
 	else
 	{
-		memo=output_target(format+1,target); //変換指定子が来るまで読み続ける。
+		memo = set_minus_precision_value(format + 1, target); //変換指定子が来るまで読み続ける。
 		//戻るモード
 		if (*format == '.')
 		{
 			memo->precision_flag = ft_atoi(format + 1);
 			//精度がある場合は、精度桁を明らかにするために、変換指定子まで読み続ける。
 			// ft_atoiを使えば良いのでは?
-			
 		}
-		
-		if(*format == '-')
+		if (*format == '-')
 		{
 			memo->minus_flag = true;
 		}
-
-	//zero_flagの有無の処理と、width_flagの有無の処理はここでは行なっていない。というかここでは行なえないので、別の関数で行う。
+		// zero_flagの有無の処理と、width_flagの有無の処理はここでは行なっていない。というかここでは行なえないので、別の関数で行う。
 		return (memo);
-
-
 	}
 }
 
-
-
 int	ft_printf(const char *format, ...)
 {
-	va_list	target;
+	va_list							target;
 	all_type_conversion_specifier	*memo;
 
 	// char*型をtypedefしたものとは限らない。コンパイラやプラットフォームに依存する。
@@ -76,7 +68,10 @@ int	ft_printf(const char *format, ...)
 			else
 			{
 				//関数を呼び出すから少し長くなるかも
-				memo=output_target(p, target);
+				memo = set_minus_precision_value(p, target);
+				memo = set_zero_flag(memo, p);
+				memo = set_width_flag(memo, p);
+				print_target(memo);
 				p = p + from_percent_to_conversion_specifier_len(p);
 			}
 		}
