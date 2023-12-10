@@ -19,3 +19,4 @@ all_type_conversion_specifier	*init_all_type_conversion_specifier(all_type_conve
 	all_type_conversion_specifier->X = 0;
 	return (all_type_conversion_specifier);
 }
+

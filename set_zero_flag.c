@@ -3,13 +3,11 @@
 all_type_conversion_specifier	*set_zero_flag(all_type_conversion_specifier *memo,
 		char *format)
 {
-	if (memo->minus_flag == true)
+	if (memo->minus_flag == true || memo->precision_flag != -1)
 	{
-		if (*format + 1 == '0')
-		{
-			memo->zero_flag = true;
-		}
+		return memo;
 	}
+
 	else
 	{
 		if (*format == '0')
