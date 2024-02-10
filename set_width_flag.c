@@ -3,9 +3,9 @@
 all_type_conversion_specifier	*set_witdth_flag(all_type_conversion_specifier *memo,
 		char *format)
 {
-	if (memo->minus_flag == true || memo->zero_flag == true)
+	if (memo->minus_flag == true )
 		format++;
-	if (memo->minus_flag == true && memo->zero_flag == true)
+	if (memo->zero_flag == true)
 		format++;
 	memo->width_flag = ft_atoi(format);
 	return (memo);

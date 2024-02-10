@@ -36,7 +36,7 @@ void	set_conversion_specifier_value(all_type_conversion_specifier *all_type_conv
 	else if (all_type_conversion_specifier->type == 2)
 		all_type_conversion_specifier->s = va_arg(target, char *);
 	else if (all_type_conversion_specifier->type == 3)
-		all_type_conversion_specifier->p = va_arg(target, void *);
+		all_type_conversion_specifier->p = va_arg(target, unsigned int);
 	else if (all_type_conversion_specifier->type == 4)
 		all_type_conversion_specifier->d = va_arg(target, int);
 	else if (all_type_conversion_specifier->type == 5)
@@ -44,9 +44,9 @@ void	set_conversion_specifier_value(all_type_conversion_specifier *all_type_conv
 	else if (all_type_conversion_specifier->type == 6)
 		all_type_conversion_specifier->u = va_arg(target, unsigned int);
 	else if (all_type_conversion_specifier->type == 7)
-		all_type_conversion_specifier->x = va_arg(target,int);
+		all_type_conversion_specifier->x = va_arg(target,unsigned int);
 	else if (all_type_conversion_specifier->type == 8)
-		all_type_conversion_specifier->X = va_arg(target, int);
+		all_type_conversion_specifier->X = va_arg(target, unsigned int);
 }
 
 all_type_conversion_specifier	*set_identified_type_conversion_specifier(all_type_conversion_specifier *all_type_conversion_specifier,

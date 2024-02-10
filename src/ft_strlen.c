@@ -6,11 +6,12 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:24:39 by rmiyauch          #+#    #+#             */
-/*   Updated: 2023/11/13 21:02:29 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2024/02/02 13:59:36 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "/Users/miyauchiryuuichi/Downloads/42tokyo/ft_printf/include/libft.h"
+
 
 size_t	ft_strlen(const char *str)
 {

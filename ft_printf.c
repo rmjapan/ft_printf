@@ -1,11 +1,6 @@
 #include "/Users/miyauchiryuuichi/Downloads/42tokyo/ft_printf/include/ft_printf.h"
 #include "/Users/miyauchiryuuichi/Downloads/42tokyo/ft_printf/include/libft.h"
 
-bool	is_conversion_specifier(char c) //変換指定子を識別する
-{
-	return (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u'
-		|| c == 'x' || c == 'X');
-}
 
 size_t	from_percent_to_conversion_specifier_len(char *format)
 //%から変換指定子までの長さ(これは、ポインターを進めるための長さを図るため。
@@ -83,3 +78,7 @@ int	ft_printf(const char *format, ...)
 	va_end(args); //可変長引数リストをクリアする。
 	return (0);
 }
+
+//マイナスフラグがあれば+1、なければ+0
+//%から変換指定子までの長さを返す関数
+//
