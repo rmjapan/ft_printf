@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   printf_d.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/10 12:44:54 by rmiyauch          #+#    #+#             */
+/*   Updated: 2024/02/10 12:45:00 by rmiyauch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "/Users/miyauchiryuuichi/Downloads/42tokyo/ft_printf/include/ft_printf.h"
 #include "/Users/miyauchiryuuichi/Downloads/42tokyo/ft_printf/include/libft.h"
 #include <stdio.h>
 #include <string.h>
 
-void	minus_field_precision_d_i_u(all_type_conversion_specifier *memo)
+void	minus_field_precision_d_i_u(t_printf_format *memo)
 {
 	char			*value_d;
 	int				d_len;
@@ -19,8 +30,8 @@ void	minus_field_precision_d_i_u(all_type_conversion_specifier *memo)
 		value_d++; //マイナスの場合は文字列の先頭をスキップ
 	}
 	d_len = ft_strlen(value_d); //文字列の長さを取得
-	width_minus_d_len = a_minus_b(memo->width_flag, d_len);
-	prec_minus_d_len = a_minus_b(memo->precision_flag, d_len);
+	width_minus_d_len = a_minus_b(memo->field_width, d_len);
+	prec_minus_d_len = a_minus_b(memo->precsion_width, d_len);
 	width_prec_len = width_minus_d_len - prec_minus_d_len;
 	if (memo->d < 0)
 	{
@@ -33,7 +44,7 @@ void	minus_field_precision_d_i_u(all_type_conversion_specifier *memo)
 		write(1, " ", 1);
 }
 
-void	zero_field_d_i_u(all_type_conversion_specifier *memo)
+void	zero_field_d_i_u(t_printf_format *memo)
 {
 	char	*value_d;
 	int		d_len;
@@ -41,8 +52,8 @@ void	zero_field_d_i_u(all_type_conversion_specifier *memo)
 
 	value_d = ft_itoa(memo->d);
 	d_len = ft_strlen(value_d);
-	width_minus_d_len = a_minus_b(memo->width_flag, d_len);
-		//フィールド幅から値の長さとマイナス記号の分を引く
+	width_minus_d_len = a_minus_b(memo->field_width, d_len);
+	//フィールド幅から値の長さとマイナス記号の分を引く
 	if (memo->d < 0)
 	{
 		write(1, "-", 1);
@@ -53,7 +64,7 @@ void	zero_field_d_i_u(all_type_conversion_specifier *memo)
 	write(1, value_d, d_len);
 }
 
-void	field_precision_d_i_u(all_type_conversion_specifier *memo)
+void	field_precision_d_i_u(t_printf_format *memo)
 {
 	char			*value_d;
 	int				d_len;
@@ -70,8 +81,8 @@ void	field_precision_d_i_u(all_type_conversion_specifier *memo)
 		pivot++;
 	}
 	d_len = ft_strlen(value_d);
-	width_minus_d_len = a_minus_b(memo->width_flag, d_len);
-	prec_minus_d_len = a_minus_b(memo->precision_flag, d_len);
+	width_minus_d_len = a_minus_b(memo->field_width, d_len);
+	prec_minus_d_len = a_minus_b(memo->precsion_width, d_len);
 	width_prec_len = width_minus_d_len - prec_minus_d_len;
 	while (width_prec_len-- > pivot)
 		write(1, " ", 1);
@@ -84,7 +95,7 @@ void	field_precision_d_i_u(all_type_conversion_specifier *memo)
 	write(1, value_d, d_len);
 }
 
-void	print_d_i_u(all_type_conversion_specifier *memo)
+void	print_d_i_u(t_printf_format *memo)
 {
 	if (memo->minus_flag == true)
 		minus_field_precision_d_i_u(memo);

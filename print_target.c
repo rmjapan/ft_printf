@@ -12,17 +12,17 @@
 
 #include "/Users/miyauchiryuuichi/Downloads/42tokyo/ft_printf/include/ft_printf.h"
 
-void printf_c(all_type_conversion_specifier *memo);
-void printf_s(all_type_conversion_specifier *memo);
-void printf_p(all_type_conversion_specifier *memo);
-void printf_d(all_type_conversion_specifier *memo);
-void printf_i(all_type_conversion_specifier *memo);
-void printf_u(all_type_conversion_specifier *memo);
-void printf_x(all_type_conversion_specifier *memo);
-void printf_X(all_type_conversion_specifier *memo);
+void printf_c(t_printf_format *memo);
+void printf_s(t_printf_format *memo);
+void printf_p(t_printf_format *memo);
+void printf_d(t_printf_format *memo);
+void printf_i(t_printf_format *memo);
+void printf_u(t_printf_format *memo);
+void printf_x(t_printf_format *memo);
+void printf_X(t_printf_format *memo);
 
 
-void	printf_target(all_type_conversion_specifier *memo)
+void	printf_target(t_printf_format *memo)
 {
 	if (memo->type==1)
 		printf_c(memo);

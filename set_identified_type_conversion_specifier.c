@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_identified_type_conversion_specifier.c         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/10 12:50:08 by rmiyauch          #+#    #+#             */
+/*   Updated: 2024/02/10 12:50:18 by rmiyauch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "/Users/miyauchiryuuichi/Downloads/42tokyo/ft_printf/include/ft_printf.h"
 
 unsigned int	identify_conversion_specifier_type(char c) //変換指定子の型を識別する
@@ -22,40 +34,40 @@ unsigned int	identify_conversion_specifier_type(char c) //変換指定子の型�
 		return (0);
 }
 
-void	set_conversion_specifier_type(all_type_conversion_specifier *all_type_conversion_specifier,
+void	set_conversion_specifier_type(t_printf_format *t_printf_format,
 		unsigned int conversion_specifier_type, va_list target)
 {
-	all_type_conversion_specifier->type = conversion_specifier_type;
+	t_printf_format->type = conversion_specifier_type;
 }
 
-void	set_conversion_specifier_value(all_type_conversion_specifier *all_type_conversion_specifier,
+void	set_conversion_specifier_value(t_printf_format *t_printf_format,
 		va_list target)
 {
-	if (all_type_conversion_specifier->type == 1)
-		all_type_conversion_specifier->c = va_arg(target, char);
-	else if (all_type_conversion_specifier->type == 2)
-		all_type_conversion_specifier->s = va_arg(target, char *);
-	else if (all_type_conversion_specifier->type == 3)
-		all_type_conversion_specifier->p = va_arg(target, unsigned int);
-	else if (all_type_conversion_specifier->type == 4)
-		all_type_conversion_specifier->d = va_arg(target, int);
-	else if (all_type_conversion_specifier->type == 5)
-		all_type_conversion_specifier->i = va_arg(target, int);
-	else if (all_type_conversion_specifier->type == 6)
-		all_type_conversion_specifier->u = va_arg(target, unsigned int);
-	else if (all_type_conversion_specifier->type == 7)
-		all_type_conversion_specifier->x = va_arg(target,unsigned int);
-	else if (all_type_conversion_specifier->type == 8)
-		all_type_conversion_specifier->X = va_arg(target, unsigned int);
+	if (t_printf_format->type == 1)
+		t_printf_format->c = va_arg(target, char);
+	else if (t_printf_format->type == 2)
+		t_printf_format->s = va_arg(target, char *);
+	else if (t_printf_format->type == 3)
+		t_printf_format->p = va_arg(target, unsigned int);
+	else if (t_printf_format->type == 4)
+		t_printf_format->d = va_arg(target, int);
+	else if (t_printf_format->type == 5)
+		t_printf_format->i = va_arg(target, int);
+	else if (t_printf_format->type == 6)
+		t_printf_format->u = va_arg(target, unsigned int);
+	else if (t_printf_format->type == 7)
+		t_printf_format->x = va_arg(target, unsigned int);
+	else if (t_printf_format->type == 8)
+		t_printf_format->X = va_arg(target, unsigned int);
 }
 
-all_type_conversion_specifier	*set_identified_type_conversion_specifier(all_type_conversion_specifier *all_type_conversion_specifier,
+t_printf_format	*set_identified_type_conversion_specifier(t_printf_format *t_printf_format,
 		char format, va_list target)
 {
 	unsigned int conversion_specifier_type = 0;
 	conversion_specifier_type = identify_conversion_specifier_type(format);
-	set_conversion_specifier_type(all_type_conversion_specifier,
+	set_conversion_specifier_type(t_printf_format,
 		conversion_specifier_type, target);
-	set_conversion_specifier_value(all_type_conversion_specifier, target);
-	return (all_type_conversion_specifier);
+	set_conversion_specifier_value(t_printf_format, target);
+	return (t_printf_format);
 }

@@ -6,7 +6,7 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:30:41 by rmiyauch          #+#    #+#             */
-/*   Updated: 2024/02/02 14:58:34 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2024/02/10 14:18:48 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "/Users/miyauchiryuuichi/Downloads/42tokyo/ft_printf/include/libft.h"
 #include <stdio.h>
 
-static size_t	ft_itoa1(long long n, char *p,char a_OR_A)
+static size_t	convert_hexa(long long n, char *p, char a_OR_A)
 {
 	size_t	k;
 
@@ -30,7 +30,7 @@ static size_t	ft_itoa1(long long n, char *p,char a_OR_A)
 	else
 	{
 		k = 0;
-		k = ft_itoa1(n / 16, p, a_OR_A);
+		k = convert_hexa(n / 16, p, a_OR_A);
 		if (n % 16 < 10)
 			p[k++] = n % 16 + '0';
 		else
@@ -68,7 +68,7 @@ char	*itoa_hexa(unsigned int n, int type)
 	p = (char *)malloc(sizeof(char) * (keta_size + 1));
 	if (p == NULL)
 		return (NULL);
-	i = ft_itoa1(n, p, a_OR_A);
+	i = convert_hexa(n, p, a_OR_A);
 	p[i] = '\0';
 	return (p);
 }
