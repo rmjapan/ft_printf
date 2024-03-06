@@ -6,14 +6,13 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:46:10 by rmiyauch          #+#    #+#             */
-/*   Updated: 2024/02/10 12:49:35 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2024/03/06 12:31:44 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "/Users/miyauchiryuuichi/Downloads/42tokyo/ft_printf/include/ft_printf.h"
-#include "/Users/miyauchiryuuichi/Downloads/42tokyo/ft_printf/include/libft.h"
+#include "ft_printf.h"
 
-void	minus_field_precision_x(t_printf_format *memo)
+void	minus_field_precision_x(t_printf_format *memo, int *return_result)
 {
 	char			*x_value;
 	unsigned int	x_len;
@@ -22,28 +21,41 @@ void	minus_field_precision_x(t_printf_format *memo)
 
 	x_value = itoa_hexa(memo->x, 7);
 	x_len = ft_strlen(x_value);
+	*return_result += x_len;
 	width_minus_x_len = a_minus_b(memo->field_width, x_len);
 	prec_minus_x_len = a_minus_b(memo->precsion_width, x_len);
 	while (memo->precsion_width-- > (int)(x_len))
+	{
 		write(1, "0", 1);
-	write(1, x_value, sizeof(x_value));
+		*return_result += 1;
+	}
+	write(1, x_value, x_len);
 	while (width_minus_x_len-- > prec_minus_x_len)
+	{
 		write(1, " ", 1);
+		*return_result += 1;
+	}
+	free(x_value);
 }
 
-void	zero_field_x(t_printf_format *memo)
+void	zero_field_x(t_printf_format *memo, int *return_result)
 {
 	char			*x_value;
 	unsigned int	x_len;
 
 	x_value = itoa_hexa(memo->x, 7);
 	x_len = ft_strlen(x_value);
+	*return_result += x_len;
 	while (memo->field_width-- > (int)(x_len))
+	{
 		write(1, "0", 1);
-	write(1, x_value, sizeof(x_value));
+		*return_result += 1;
+	}
+	write(1, x_value, x_len);
+	free(x_value);
 }
 
-void	field_precision_x(t_printf_format *memo)
+void	field_precision_x(t_printf_format *memo, int *return_result)
 {
 	char			*x_value;
 	unsigned int	x_len;
@@ -52,28 +64,36 @@ void	field_precision_x(t_printf_format *memo)
 
 	x_value = itoa_hexa(memo->x, 7);
 	x_len = ft_strlen(x_value);
+	*return_result += x_len;
 	width_minus_x_len = a_minus_b(memo->field_width, x_len);
 	prec_minus_x_len = a_minus_b(memo->precsion_width, x_len);
 	while (width_minus_x_len-- > prec_minus_x_len)
+	{
 		write(1, " ", 1);
+		*return_result += 1;
+	}
 	while (memo->precsion_width-- > (int)(x_len))
+	{
 		write(1, "0", 1);
-	write(1, x_value, sizeof(x_value));
+		*return_result += 1;
+	}
+	write(1, x_value, x_len);
+	free(x_value);
 }
 
-void	print_x(t_printf_format *memo)
+void	printf_x(t_printf_format *memo, int *return_result)
 {
 	if (memo->minus_flag == true)
 	{
-		minus_field_precision_x(memo);
+		minus_field_precision_x(memo, return_result);
 	}
 	else if (memo->zero_flag == true)
 	{
-		zero_field_x(memo);
+		zero_field_x(memo, return_result);
 	}
 	else
 	{
-		field_precision_x(memo);
+		field_precision_x(memo, return_result);
 	}
 }
 
@@ -108,7 +128,8 @@ void	print_x(t_printf_format *memo)
 // 	{
 // 		memo->zero_flag = false;
 // 		printf("フラグが存在しない場合\n");
-// 		snprintf(format, sizeof(format), "Std:  [%%%d.%dx]\n", memo->field_width,
+// 		snprintf(format, sizeof(format), "Std:  [%%%d.%dx]\n",
+// memo->field_width,
 // 			memo->precsion_width);
 // 	}
 // 	// Benchmark output with standard printf function

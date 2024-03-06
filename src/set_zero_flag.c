@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_field_width.c                                   :+:      :+:    :+:   */
+/*   set_zero_flag.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 12:50:27 by rmiyauch          #+#    #+#             */
-/*   Updated: 2024/02/10 12:50:44 by rmiyauch         ###   ########.fr       */
+/*   Created: 2024/02/10 12:51:10 by rmiyauch          #+#    #+#             */
+/*   Updated: 2024/02/25 14:34:52 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "/Users/miyauchiryuuichi/Downloads/42tokyo/ft_printf/include/ft_printf.h"
-#include "/Users/miyauchiryuuichi/Downloads/42tokyo/ft_printf/include/libft.h"
+#include "ft_printf.h"
 
-t_printf_format	*set_witdth_flag(t_printf_format *memo,
-		char *format)
+t_printf_format	*set_zero_flag(t_printf_format *memo, const char *format)
 {
-	if (memo->minus_flag == true)
-		format++;
-	if (memo->zero_flag == true)
-		format++;
-	memo->field_width = ft_atoi(format);
+	if (memo->minus_flag == true || memo->precsion_width != -1)
+	{
+		return (memo);
+	}
+	else
+	{
+		if (*format == '0')
+		{
+			memo->zero_flag = true;
+		}
+	}
 	return (memo);
 }

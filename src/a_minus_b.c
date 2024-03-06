@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   a_minus_b.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/16 15:24:39 by rmiyauch          #+#    #+#             */
-/*   Updated: 2024/02/02 13:59:36 by rmiyauch         ###   ########.fr       */
+/*   Created: 2024/02/10 13:05:10 by rmiyauch          #+#    #+#             */
+/*   Updated: 2024/02/25 14:38:01 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "/Users/miyauchiryuuichi/Downloads/42tokyo/ft_printf/include/libft.h"
+#include "ft_printf.h"
 
-
-size_t	ft_strlen(const char *str)
+unsigned int	a_minus_b(int a, int b)
 {
-	size_t	i;
-
-	i = 0;
-	while (*str != '\0')
-	{
-		i++;
-		str++;
-	}
-	return (i);
+	if (a > b)
+		return (a - b);
+	else
+		return (0);
 }

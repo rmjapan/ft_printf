@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   a_minus_b.c                                        :+:      :+:    :+:   */
+/*   is_conversion_specifier.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 13:05:10 by rmiyauch          #+#    #+#             */
-/*   Updated: 2024/02/10 15:36:37 by rmiyauch         ###   ########.fr       */
+/*   Created: 2024/02/10 12:51:55 by rmiyauch          #+#    #+#             */
+/*   Updated: 2024/03/04 14:36:05 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "/Users/miyauchiryuuichi/Downloads/42tokyo/ft_printf/include/ft_printf.h"
+#include "ft_printf.h"
 
-unsigned int	a_minus_b(int a, int b)
+bool	is_conversion_specifier(char c)
 {
-	if (a > b)
-		return (a - b);
-	else
-		return (0);
+	return (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u'
+		|| c == 'x' || c == 'X');
 }

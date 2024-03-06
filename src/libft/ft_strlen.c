@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_conversion_specifier.c                          :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 12:51:55 by rmiyauch          #+#    #+#             */
-/*   Updated: 2024/02/10 12:52:00 by rmiyauch         ###   ########.fr       */
+/*   Created: 2023/09/16 15:24:39 by rmiyauch          #+#    #+#             */
+/*   Updated: 2024/03/04 16:09:55 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "/Users/miyauchiryuuichi/Downloads/42tokyo/ft_printf/include/ft_printf.h"
+#include "libft.h"
 
-bool	is_conversion_specifier(char c) //変換指定子を識別する
+size_t	ft_strlen(const char *str)
 {
-	return (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u'
-		|| c == 'x' || c == 'X');
+	size_t	i;
+
+	i = 0;
+	while (*str != '\0')
+	{
+		i++;
+		str++;
+	}
+	return (i);
 }
