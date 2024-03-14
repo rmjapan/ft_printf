@@ -6,7 +6,7 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:52:03 by rmiyauch          #+#    #+#             */
-/*   Updated: 2024/03/06 13:31:12 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2024/03/14 10:07:18 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ t_printf_format	*set_minus_precision_value(const char *format, va_list *target)
 {
 	t_printf_format	*memo;
 
-	memo = (t_printf_format *)malloc(sizeof(t_printf_format) * 1);
-	if (!memo)
-		return (NULL);
 	if (is_conversion_specifier(*format))
 	{
+		memo = (t_printf_format *)malloc(sizeof(t_printf_format) * 1);
+		if (!memo)
+			return (NULL);
 		init_t_printf_format(memo);
 		memo = set_id_type_conv_spec(memo, *format, target);
 		return (memo);
