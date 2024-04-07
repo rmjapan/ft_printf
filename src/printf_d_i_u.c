@@ -6,7 +6,7 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:44:54 by rmiyauch          #+#    #+#             */
-/*   Updated: 2024/03/06 13:30:53 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2024/04/07 21:19:47 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,22 @@ void	minus_field_precision_d_i_u(t_printf_format *memo,
 
 	value = ft_itoa_d_i_u(memo);
 	value_p = value;
+	*return_result += ft_strlen(value);
 	if (value_d_i_u < 0)
 	{
 		write(1, "-", 1);
 		value++;
 	}
-	*return_result += ft_strlen(value);
 	prec_minus_len = a_minus_b(memo->precsion_width, ft_strlen(value));
 	width_prec_len = a_minus_b(memo->field_width, ft_strlen(value))
 		- prec_minus_len;
 	if (value_d_i_u < 0)
+	{
 		width_prec_len--;
-	*return_result += width_prec_len + prec_minus_len;
-	while (prec_minus_len-- > 0)
-		write(1, "0", 1);
+	}
+	write_chars('0', prec_minus_len, return_result, 0);
 	write(1, value, ft_strlen(value));
-	while (width_prec_len-- > 0)
-		write(1, " ", 1);
+	write_chars(' ', width_prec_len, return_result, 0);
 	free(value_p);
 }
 
@@ -76,6 +75,7 @@ void	zero_field_d_i_u(t_printf_format *memo, long long value_d_i_u,
 	{
 		write(1, "-", 1);
 		value++;
+		len--;
 	}
 	while (width_minus_len-- > 0)
 	{
@@ -105,9 +105,8 @@ void	field_precision_d_i_u(t_printf_format *memo, long long value_d_i_u,
 	}
 	pre_minus_len = a_minus_b(memo->precsion_width, ft_strlen(value));
 	wid_pr_len = a_minus_b(memo->field_width, ft_strlen(value)) - pre_minus_len;
-	*return_result += wid_pr_len + pre_minus_len + ft_strlen(value_p);
-	while (wid_pr_len-- > pivot)
-		write(1, " ", 1);
+	*return_result += pre_minus_len + ft_strlen(value_p);
+	write_chars(' ', wid_pr_len, return_result, pivot);
 	if (value_d_i_u < 0)
 		write(1, "-", 1);
 	while (pre_minus_len-- > 0)
@@ -116,7 +115,6 @@ void	field_precision_d_i_u(t_printf_format *memo, long long value_d_i_u,
 	free(value_p);
 }
 
-// long long 型に変換するのは、int型の最小値、最大値の範囲の数値を処理可能で、かつunsigned　int型の最大値も処理可能だからです。
 void	printf_d_i_u(t_printf_format *memo, int *return_result)
 {
 	long long	value_d_i_u;

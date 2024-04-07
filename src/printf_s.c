@@ -6,7 +6,7 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 21:39:15 by rmiyauch          #+#    #+#             */
-/*   Updated: 2024/03/05 16:48:38 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2024/04/07 16:42:29 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,45 @@ void	non_minus_field_s(t_printf_format *memo, int *return_result)
 	write(1, memo->s, str_len);
 }
 
+void	field_precision_s(t_printf_format *memo, int *return_result)
+{
+	int		str_len;
+	char	*ptr;
+	int		len;
+
+	ptr = memo->s;
+	if (memo->s == NULL)
+		memo->s = "(null)";
+	str_len = ft_strlen(memo->s);
+	if (memo->precsion_width < str_len)
+	{
+		len = memo->precsion_width;
+	}
+	else
+	{
+		len = str_len;
+	}
+	while (len-- > 0)
+	{
+		ft_putchar_fd(*ptr, 1);
+		*return_result += 1;
+		ptr++;
+	}
+}
+
 void	printf_s(t_printf_format *memo, int *return_result)
 {
 	if (memo->minus_flag == true)
 		minus_field_s(memo, return_result);
 	else
 	{
-		non_minus_field_s(memo, return_result);
+		if (memo->precsion_width != -1)
+		{
+			field_precision_s(memo, return_result);
+		}
+		else
+		{
+			non_minus_field_s(memo, return_result);
+		}
 	}
 }
