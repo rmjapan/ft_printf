@@ -6,7 +6,7 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:52:03 by rmiyauch          #+#    #+#             */
-/*   Updated: 2024/04/07 16:41:33 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:16:04 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,11 @@ const char	*output_format(const char *p, va_list *target,
 {
 	if (*p == '%')
 	{
+		if (*(p + 1) == '\0')
+			return (p);
 		p++;
 		if (*p == '%')
-		{
-			write(1, "%", 1);
-			*return_result += 1;
-		}
+			write_char('%', return_result);
 		else
 		{
 			memo = set_minus_precision_value(p, target);
@@ -72,10 +71,7 @@ const char	*output_format(const char *p, va_list *target,
 		}
 	}
 	else
-	{
-		write(1, p, 1);
-		*return_result += 1;
-	}
+		write_char(*p, return_result);
 	return (p);
 }
 

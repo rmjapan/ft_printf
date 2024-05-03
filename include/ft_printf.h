@@ -6,7 +6,7 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 13:01:45 by rmiyauch          #+#    #+#             */
-/*   Updated: 2024/04/07 21:04:55 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:17:25 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ bool					is_conversion_specifier(char c);
 char					*ft_itoa_u(size_t n);
 void					write_chars(char c, int count, int *return_result,
 							int compared_num);
+void					write_char(char c, int *return_result);
 
 #endif // FT_PRINTF_H
