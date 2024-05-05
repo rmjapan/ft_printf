@@ -6,7 +6,7 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:52:03 by rmiyauch          #+#    #+#             */
-/*   Updated: 2024/05/05 12:53:51 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2024/05/05 12:56:59 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ const char	*output_format(const char *p, va_list *target,
 {
 	if (*p == '%')
 	{
-		if (*(p + 1) == '\0')
-			return (p);
 		p++;
 		if (*p == '%')
 			write_char('%', return_result);
